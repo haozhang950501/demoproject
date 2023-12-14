@@ -1,0 +1,34 @@
+name: my-first-project
+version: 0.0.0
+type: app
+targets:
+  - "1500"
+  - llvm
+  - plcsim
+devDependencies:
+  "@ax/sdk": 2311.0.1
+  "@ax/st-lang-contrib-library-toolbox": ^0.17.2
+variables:
+  APAX_BUILD_ARGS:
+    - "--debug"
+  BINARIES_FOLDER: "./bin/plcsim"
+  IP_ADDRESS: "192.168.0.1"
+  AX_SLD_ACCEPT_SECURITY_DISCLAIMER: " --accept-security-disclaimer"
+scripts:
+  load:
+    - apax sld load -i $BINARIES_FOLDER -t
+      $IP_ADDRESS  $AX_SLD_ACCEPT_SECURITY_DISCLAIMER -r
+  monitor:
+    #- apax mon --targetIP $IP_ADDRESS --file ./counter.mon --continuously --output table
+    - apax mon --targetIP $IP_ADDRESS --symbols 'upCounter' --continuously
+      --output table
+  modi:
+    - apax mod -t $IP_ADDRESS --symbols 'upCounter' -v 0
+installStrategy: strict
+apaxVersion: 3.0.0
+dependencies:
+  "@ax/mon": ^1.0.4
+  "@ax/sdb": ^1.0.4
+  "@ax/trace": ^2.7.0
+  "@ax/dcp-utility": ^1.1.1
+  "@ax/plc-mode": ^1.0.0

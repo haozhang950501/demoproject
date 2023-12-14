@@ -1,0 +1,6 @@
+{
+    "tracing.pinnedPlcs": [
+        "plc1.yml"
+    ],
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+}

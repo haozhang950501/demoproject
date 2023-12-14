@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=simatic-trace-config-schema
+name: "ymlPerpetualTrace"
+jobType: perpetual #required, other option: finite
+signals:
+  - "upCounter" #This is a global variable 
+  #- address: "%IW0" #This is a hardware address of periphery
+     #dataType: "INT" #This sets the encoding of the data
+
+checkPoint: #optional, if not used, the checkpoint will be set to the end of the program cycle (background task / OB1)
+  task: "PLC_1.Main" #required for checkpoint: select the task 'CONFIGURATION_name.Task_name'
+  position: before #optional, other option: after, defines if data is collected before or after the task is called, default: after
+
+frequency: 1 #optional, number of cycles until the next data is collected,  default: 1 (every cycle)
+
+bufferCount: 1000 #optional: Number of samples in the ring buffer for perpetual jobs, default: 1000

@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=simatic-trace-config-schema
+name: "sampleCount_finite" #required
+jobType: finite #required, other option: perpetual
+signals:
+  - "upCounter" #This is a global variable 
+  #- address: "%IW0" #This is a hardware address of periphery
+     #dataType: "INT" #This sets the encoding of the data
+
+checkPoint: #optional, if not used, the checkpoint will be set to the end of the program cycle (background task / OB1)
+  task: "PLC_1.Main" #required for checkpoint: select the task 'CONFIGURATION_name.Task_name'
+  position: before #optional, other option: after, defines if data is collected before or after the task is called, default: after
+
+frequency: 1 #optional, number of cycles until the next data is collected,  default: 1 (every cycle)
+
+sampleCount: 50 #required, Number of samples after job is finished (for finite traces), necessary for finite jobs
+
+saveTrigger: #optional:
+  condition: #required for save trigger: trigger condition
+    upCounter >= 10
+  preSamples: #optional for save trigger: Number of samples that are collected before the trigger occurs
+    10
+
+memoryCard: #optional: add this to enable logging to the simatic memory card
+  saveCount: #required for logging: number of measurements to be stored to the memory card. Must be 1 or higher
+    1
+  #optional for logging: overwrite the values when the number of measurements defined in SaveCount were reached. True: Values get overwritten, false: trace will stop
+  overwriteWhenFull: 
+    false

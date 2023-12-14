@@ -1,0 +1,37 @@
+
+*O
+
+$GLOBALADD
+
+$GLOBALa"
+INT
+
+$GLOBALb"
+INT"
+INT2
+
+$GLOBALSampleProgram:—
+
+$GLOBALPLC_1"!
+
+$GLOBAL	upCounter"
+INT"N
+
+$GLOBALglobalIntArray"/-
+
+$GLOBALARRAY [0..9] OF INT	
+INT*/
+
+$GLOBALP1Main
+$GLOBALSampleProgram2_
+
+$GLOBALMainDefaultIntervalTask3"1
+
+	tInterval
+
+1000000000
+
+	iPriority
+1B
+
+$GLOBALSampleProgram

@@ -1,0 +1,2 @@
+host: 192.168.0.1
+# certificate: !certificate (file name, omit for legacy connection)

@@ -1,0 +1,63 @@
+{
+    "Simple Date Function": {
+        "scope": "javascript,typescript,st",
+        "prefix": [
+            "get-date",
+            "current-date"
+        ],
+        "body": [
+            "FUNCTION CurrentDate: DATE",
+            "\tCurrentDate := DATE#$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE;",
+            "END_FUNCTION"
+        ],
+        "description": "Function returning current date"
+    },
+    "Var Sections": {
+        "prefix": [
+            "var"
+        ],
+        "body": [
+            "${1|VAR_INPUT,VAR_OUTPUT,VAR_TEMP,VAR CONSTANT|}",
+            "\t${2:count}: ${3|INT,STRING,BOOL|};",
+            "END_VAR$0"
+        ],
+        "description": "Var Sections"
+    },
+    "if_else": {
+        "scope": "st",
+        "prefix": [
+            "surround with if-else..."
+        ],
+        "body": [
+            "IF (${1:condition}) THEN",
+            "\t${TM_SELECTED_TEXT}",
+            "END_IF;"
+        ],
+        "description": "Surround selected text with if-else"
+    },
+    "for": {
+        "scope": "st",
+        "prefix": [
+            "surround with for-loop..."
+        ],
+        "body": [
+            "FOR Index := ${1:StartValue} TO ${2:EndValue} DO",
+            "\t${TM_SELECTED_TEXT}",
+            "END_FOR;"
+        ],
+        "description": "Surround selected text with for-loop"
+    },
+    "array": {
+        "scope":"st",
+        "prefix":[
+            "ARRAY [0..N] OF INT"
+        ],
+        "body":[
+            "ARRAY [0..${1:9}] OF ${2|BOOL,INT,WORD,REAL,STRING|}"
+        ],
+        "description":"Surround selected text with Array of"
+            
+        }
+
+}
+   

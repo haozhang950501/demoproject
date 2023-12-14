@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "diagBufferText",
+      "description": "The diagnostics buffer text"
+    },
+    {
+      "type": "promptString",
+      "id": "pathToLoadable",
+      "description": "The path to the loadable directory"
+    },
+    {
+      "id": "ipAddress",
+      "type": "promptString",
+      "description": "The target PLC IP address",
+      "default": "192.168.0.1"
+    },
+    {
+      "id": "target",
+      "type": "pickString",
+      "description": "The target PLC",
+      "options": [
+        "1500",
+        "plcsim"
+      ],
+      "default": "1500"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Download project",
+      "type": "shell",
+      "command": "apax sld load -i ${workspaceFolder}/bin/${input:target} -t ${input:ipAddress} -r --accept-security-disclaimer",
+      "problemMatcher": []
+    },
+    {
+      "label": "monitor counter.mon",
+      "type": "shell",
+      "command": "apax mon --targetIP ${input:ipAddress} --file ./counter.mon --continuously --output table",
+      "problemMatcher": []
+    },
+    {
+      "label": "Modify upCounter to '0'",
+      "type": "shell",
+      "command": "apax mod --targetIP ${input:ipAddress} --symbol upCounter --value 0"
+    },
+    {
+      "label": "GetDiagnosticsLocation",
+      "type": "shell",
+      "command": "apax diagnosticsbuffer -d \"${input:diagBufferText}\" -s \"${input:pathToLoadable}\"",
+      "problemMatcher": []
+    }
+  ],
+ 
+}

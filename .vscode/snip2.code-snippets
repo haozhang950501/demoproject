@@ -1,0 +1,14 @@
+{
+	"while": {
+		"scope": "st",
+		"prefix": [
+			"surround with while..."
+		],
+		"body": [
+			"WHILE (${1:condition})",
+			"\t${TM_SELECTED_TEXT}",
+			"END_WHILE;"
+		],
+		"description": "Surround selected text with while"
+	}
+}
